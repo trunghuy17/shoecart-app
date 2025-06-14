@@ -1,12 +1,14 @@
+import { useAppContext } from "../context/AppContext";
 import type { Product } from "../types/Product";
 
 type Props = {
   product: Product;
-  onAddToCart: (product: Product) => void;
-  isInCart: boolean;
 };
 
-function ProductCard({ product, onAddToCart, isInCart }: Props) {
+function ProductCard({ product }: Props) {
+  const { handleAddToCart, cart }  = useAppContext();
+  const isInCart = cart.some((item) => item.id === product.id)
+
   return (
     <div>
       <div className="shopItem">
@@ -42,7 +44,7 @@ function ProductCard({ product, onAddToCart, isInCart }: Props) {
               opacity: isInCart ? '0.5' : 1, 
               cursor: isInCart ? "default" : 'cursor' 
             }}
-            onClick={isInCart ? () => {} : () => onAddToCart(product)}
+            onClick={isInCart ? () => {} : () => handleAddToCart(product)}
           >
             {isInCart ? 'Added' : 'Add to cart'}
           </div>

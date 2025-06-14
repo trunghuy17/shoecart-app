@@ -1,30 +1,25 @@
-import type { Product } from "../types/Product";
+import { useAppContext } from "../context/AppContext";
 import CartItem from "./CartItem";
 
-type Props = {
-  cartItems: Product[];
-  onIncrement: (id: number) => void;
-  onDecrement: (id: number) => void;
-  onRemove: (id: number) => void;
-};
-
-function Cart({
-  cartItems,
-  onIncrement,
-  onDecrement,
-  onRemove,
-}: Props) {
+function Cart() {
+  const { 
+    handleDecrement,
+    handleIncrement,
+    handleRemove,
+    cart
+  } = useAppContext();
+    
   return (
     <>
     
       <div className="cardBody">
-        {cartItems.map((product) => (
+        {cart.map((product) => (
           <CartItem
             key={product.id}
             product={product}
-            onIncrement={() => onIncrement(product.id)}
-            onDecrement={() => onDecrement(product.id)}
-            onRemove={() => onRemove(product.id)}
+            onIncrement={() => handleIncrement(product.id)}
+            onDecrement={() => handleDecrement(product.id)}
+            onRemove={() => handleRemove(product.id)}
           />
         ))}
       </div>

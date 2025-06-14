@@ -7,13 +7,8 @@ import { useAppContext } from "./context/AppContext";
 function App() {
   const { 
     products,
-    handleAddToCart,
-    handleDecrement,
-    handleIncrement,
-    handleRemove,
     totalPrice,
     totalItems,
-    cart
   } = useAppContext();
   
   return (
@@ -32,8 +27,6 @@ function App() {
                 <ProductCard
                   key={product.id}
                   product={product}
-                  onAddToCart={handleAddToCart}
-                  isInCart={cart.some((item) => item.id === product.id)}
                 />
               ))}
             </div>
@@ -51,12 +44,7 @@ function App() {
               <span>${totalPrice.toFixed(2)}</span>
             </div>
 
-            <Cart
-              cartItems={cart}
-              onIncrement={handleIncrement}
-              onDecrement={handleDecrement}
-              onRemove={handleRemove}
-            />
+            <Cart />
           </div>
       </div>
     </>
