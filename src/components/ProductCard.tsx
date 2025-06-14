@@ -21,7 +21,7 @@ function ProductCard({ product, onAddToCart, isInCart }: Props) {
         <div className="shopItem_bottom">
           <div className="shopItem_price">${product.price.toFixed(2)}</div>
 
-          {isInCart ? (
+          {/* {isInCart ? (
             <div
               className="shopItem_button"
               style={{ opacity:'0.5', cursor: "default" }}
@@ -35,7 +35,17 @@ function ProductCard({ product, onAddToCart, isInCart }: Props) {
             >
               Add to cart
             </div>
-          )}
+          )} */}
+          <div
+            className="shopItem_button"
+            style={{ 
+              opacity: isInCart ? '0.5' : 1, 
+              cursor: isInCart ? "default" : 'cursor' 
+            }}
+            onClick={isInCart ? () => {} : () => onAddToCart(product)}
+          >
+            {isInCart ? 'Added' : 'Add to cart'}
+          </div>
         </div>
       </div>
     </div>
