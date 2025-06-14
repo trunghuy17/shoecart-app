@@ -83,7 +83,7 @@ export const AppProvider = ({ children }: React.PropsWithChildren) => {
   const totalPrice = cart.reduce(
     (sum, item) => sum + item.price * (item.quantity ?? 0),
     0
-  );
+  ); // 100$
 
   const totalItems = cart.length;
 
