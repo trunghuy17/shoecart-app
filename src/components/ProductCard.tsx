@@ -1,13 +1,35 @@
-import { useAppContext } from "../context/AppContext";
-import type { Product } from "../types/Product";
+import { useDispatch, useSelector } from "react-redux";
+import type { Product, RootState } from "../types/Product";
+import { addToCart } from "../redux/cart.action";
 
 type Props = {
   product: Product;
 };
 
 function ProductCard({ product }: Props) {
-  const { handleAddToCart, cart }  = useAppContext();
+  const dispatch = useDispatch();
+
+  const cart = useSelector((state: RootState) => state.cart.cart);
   const isInCart = cart.some((item) => item.id === product.id)
+
+  const handleAddToCart = (product: Product) => {
+    const checkItem = cart.find((item)=> item.id === product.id);
+    if (checkItem){
+      const newCart = cart.map((item:Product) => 
+          item.id === product.id
+          ? {...item, quantity:(item.quantity ?? 0) + 1}
+          : item
+        )
+      dispatch(addToCart(newCart))
+      return;
+    }
+    const newCart = {
+      ...product,
+      quantity: 1,
+    }
+    dispatch(addToCart(newCart))
+  };
+  
 
   return (
     <div>

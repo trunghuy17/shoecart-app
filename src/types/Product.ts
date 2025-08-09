@@ -7,3 +7,17 @@ export interface Product {
   color: string;
   quantity?:number
 }
+
+
+export interface IStateCart {
+  cart: Product[]
+}
+
+export interface IAction {
+  type: string,
+  payload: any
+}
+
+export interface RootState {
+  cart: IStateCart
+}

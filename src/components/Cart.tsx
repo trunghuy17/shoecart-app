@@ -1,14 +1,17 @@
+import { useSelector } from "react-redux";
 import { useAppContext } from "../context/AppContext";
 import CartItem from "./CartItem";
+import type { RootState } from "../types/Product";
 
 function Cart() {
   const { 
     handleDecrement,
     handleIncrement,
     handleRemove,
-    cart
   } = useAppContext();
-    
+
+  const cart = useSelector((state: RootState) => state.cart.cart)
+
   return (
     <>
     
