@@ -6,3 +6,26 @@ export const addToCart = (product: Product | Product[]) => {
     payload: product
   }
 }
+
+export const incrementItem = (productId: number) => {
+  return {
+    type: 'INCREMENT_ITEM',
+    payload: productId
+  }
+}
+
+export const decreaseItem = (productId: number) => {
+  return {
+    type: 'DECREASE_ITEM',
+    payload: productId
+  }
+}
+
+export const removeItem = (productId: number) => {
+  return {
+    type: 'REMOVE_ITEM',
+    payload: productId
+  }
+}
+
+

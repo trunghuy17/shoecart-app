@@ -3,14 +3,19 @@ import ProductCard from "./components/ProductCard";
 import "./styles/styles.css";
 import Cart from "./components/Cart";
 import { useAppContext } from "./context/AppContext";
+import type { RootState } from "./types/Product";
+import { useSelector } from "react-redux";
 
 function App() {
   const { 
     products,
-    totalPrice,
-    totalItems,
   } = useAppContext();
   
+  const cart = useSelector((state: RootState) => state.cart.cart);
+    const totalPrice = cart.reduce(
+    (sum, item) => sum + item.price * (item.quantity ?? 0),
+    0
+  ); // 100$
   return (
     <>
       <div className="mainContent">
@@ -37,7 +42,7 @@ function App() {
                 src="https://cdn-icons-png.flaticon.com/512/732/732084.png"
                 width={50}
               />
-              <span>Total: {totalItems}</span>
+              <span>Total: {cart && cart.length}</span>
             </div>
             <div className="cardTitle">
               <span>Your cart</span>

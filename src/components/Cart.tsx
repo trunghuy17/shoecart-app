@@ -1,16 +1,24 @@
-import { useSelector } from "react-redux";
-import { useAppContext } from "../context/AppContext";
+import { useDispatch, useSelector } from "react-redux";
 import CartItem from "./CartItem";
 import type { RootState } from "../types/Product";
+import { decreaseItem, incrementItem, removeItem } from "../redux/cart.action";
 
 function Cart() {
-  const { 
-    handleDecrement,
-    handleIncrement,
-    handleRemove,
-  } = useAppContext();
-
   const cart = useSelector((state: RootState) => state.cart.cart)
+  const dispatch = useDispatch()
+
+  const handleIncrement = (id: number) => {
+      dispatch(incrementItem(id))
+  }
+
+  const handleDecrement = (id: number) => {
+    dispatch(decreaseItem(id))
+  }
+
+  const handleRemove = (id: number) => {
+    dispatch(removeItem(id))
+  }
+
 
   return (
     <>
