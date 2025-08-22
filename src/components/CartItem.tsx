@@ -20,7 +20,7 @@ function CartItem({ product, onIncrement, onDecrement, onRemove }: Props) {
       </div>
       <div className="cardItem_right">
         <div className="cardItem_name">{product.name}</div>
-        <div className="cardItem_price">${product.price.toFixed(2)}</div>
+        <div className="cardItem_price">${(product.price * (product.quantity ?? 1)).toFixed(2)}</div>
         <div className="cartItem_actions">
           <div className="cartItem_count">
             <div className="cartItem_button" onClick={onDecrement}>
