@@ -8,7 +8,7 @@ function Cart() {
   const dispatch = useDispatch()
 
   const handleIncrement = (id: number) => {
-      dispatch(incrementItem(id))
+    dispatch(incrementItem(id))
   }
 
   const handleDecrement = (id: number) => {

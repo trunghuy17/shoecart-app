@@ -1,4 +1,5 @@
 import type { IAction, IStateCart, Product } from "../types/Product";
+import { ADD_TO_CART, DECREASE_ITEM, INCREMENT_ITEM, REMOVE_ITEM } from "./type"
 
 const initialState: IStateCart = {
   cart: [] 
@@ -6,14 +7,14 @@ const initialState: IStateCart = {
 
 export const cartReducer = (state = initialState, action: IAction) => {
   switch(action.type) {
-    case 'CART/ADD_TO_CART': {
+    case ADD_TO_CART: {
       return {
         ...state,
         cart: [...state.cart, action.payload]
       }
     }
 
-    case 'INCREMENT_ITEM' : {
+    case INCREMENT_ITEM : {
       return {
         ...state,
         cart: state.cart.map((item:Product) => 
@@ -24,7 +25,7 @@ export const cartReducer = (state = initialState, action: IAction) => {
       }
     }
 
-    case 'DECREASE_ITEM' : {
+    case DECREASE_ITEM : {
       return {
         ...state,
         cart: state.cart.map((item:Product) => 
@@ -35,7 +36,7 @@ export const cartReducer = (state = initialState, action: IAction) => {
       }
     }
 
-    case 'REMOVE_ITEM' : {
+    case REMOVE_ITEM : {
       return {
         ...state,
         cart: state.cart.filter((item:Product) => item.id !== action.payload)

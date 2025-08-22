@@ -1,0 +1,4 @@
+export const ADD_TO_CART = 'CART/ADD_TO_CART';
+export const INCREMENT_ITEM = 'CART/INCREMENT_ITEM';
+export const DECREASE_ITEM = 'CART/DECREASE_ITEM';
+export const REMOVE_ITEM = 'CART/REMOVE_ITEM';
