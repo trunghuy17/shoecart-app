@@ -14,23 +14,14 @@ export const cartReducer = (state = initialState, action: IAction) => {
       }
     }
 
-    case INCREMENT_ITEM : {
-      return {
-        ...state,
-        cart: state.cart.map((item:Product) => 
-          item.id === action.payload
-          ? {...item, quantity:(item.quantity ?? 0) + 1}
-          : item
-        )
-      }
-    }
-
+    case INCREMENT_ITEM :
     case DECREASE_ITEM : {
+      const quantityAdjustment = action.type === INCREMENT_ITEM ? 1 : -1
       return {
         ...state,
         cart: state.cart.map((item:Product) => 
           item.id === action.payload
-          ? {...item, quantity:(item.quantity ?? 0) - 1}
+          ? {...item, quantity:(item.quantity ?? 0) + quantityAdjustment}
           : item
         ).filter((item: Product) => item.quantity !== 0) 
       }
