@@ -1,4 +1,5 @@
 import type { IAction, IStateCart, Product } from "../types/Product";
+import { updateQuanlityProduct } from "../utils/updateQuantityProduct";
 import { ADD_TO_CART, DECREASE_ITEM, INCREMENT_ITEM, REMOVE_ITEM } from "./type"
 
 const initialState: IStateCart = {
@@ -14,16 +15,25 @@ export const cartReducer = (state = initialState, action: IAction) => {
       }
     }
 
-    case INCREMENT_ITEM :
-    case DECREASE_ITEM : {
-      const quantityAdjustment = action.type === INCREMENT_ITEM ? 1 : -1
+    case INCREMENT_ITEM: {
       return {
         ...state,
-        cart: state.cart.map((item:Product) => 
-          item.id === action.payload
-          ? {...item, quantity:(item.quantity ?? 0) + quantityAdjustment}
-          : item
-        ).filter((item: Product) => item.quantity !== 0) 
+        cart: updateQuanlityProduct({
+          dataSource: state.cart,
+          productId: action.payload,
+          quanlity: 1
+        })
+      }
+    }
+
+    case DECREASE_ITEM : {
+      return {
+        ...state,
+        cart: updateQuanlityProduct({
+          dataSource: state.cart,
+          productId: action.payload,
+          quanlity: -1
+        })
       }
     }
 
