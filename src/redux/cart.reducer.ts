@@ -1,13 +1,19 @@
 import type { IAction, IStateCart, Product } from "../types/Product";
 import { updateQuanlityProduct } from "../utils/updateQuantityProduct";
-import { ADD_TO_CART, DECREASE_ITEM, INCREMENT_ITEM, REMOVE_ITEM } from "./type"
+import { ADD_TO_CART, DECREASE_ITEM, GET_PRODUCT, INCREMENT_ITEM, REMOVE_ITEM } from "./type"
 
 const initialState: IStateCart = {
-  cart: [] 
+  cart: [],
+  products: [] as Product[] 
 }
 
 export const cartReducer = (state = initialState, action: IAction) => {
   switch(action.type) {
+    
+    case GET_PRODUCT: {
+      return {...state, products: action.payload}
+    }
+    
     case ADD_TO_CART: {
       return {
         ...state,

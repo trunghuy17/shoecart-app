@@ -11,6 +11,7 @@ export interface Product {
 
 export interface IStateCart {
   cart: Product[]
+  products: Product[]
 }
 
 export interface IAction {

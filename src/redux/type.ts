@@ -1,3 +1,4 @@
+export const GET_PRODUCT = 'GET_PRODUCT';
 export const ADD_TO_CART = 'CART/ADD_TO_CART';
 export const INCREMENT_ITEM = 'CART/INCREMENT_ITEM';
 export const DECREASE_ITEM = 'CART/DECREASE_ITEM';

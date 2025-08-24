@@ -2,20 +2,28 @@ import "./App.css";
 import ProductCard from "./components/ProductCard";
 import "./styles/styles.css";
 import Cart from "./components/Cart";
-import { useAppContext } from "./context/AppContext";
 import type { RootState } from "./types/Product";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { useEffect } from "react";
+import { GET_PRODUCT } from "./redux/type";
 
 function App() {
-  const { 
-    products,
-  } = useAppContext();
-  
-  const cart = useSelector((state: RootState) => state.cart.cart);
+  const { products, cart } = useSelector((state: RootState) => state.cart);
+
     const totalPrice = cart.reduce(
     (sum, item) => sum + item.price * (item.quantity ?? 0),
     0
   ); // 100$
+
+  const dispatch = useDispatch()
+
+  useEffect(() => {
+    import("./data/shoeCart.json").then((res) => dispatch({
+      type: GET_PRODUCT,
+      payload: res.default
+    }));
+  },[])
+
   return (
     <>
       <div className="mainContent">
